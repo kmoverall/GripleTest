@@ -63,10 +63,16 @@ public class AlbumMenu : MonoBehaviour
         foreach (var album in albums)
         {
             var entry = Instantiate(_entryPrefab, _listRoot);
-            entry.Initialize(album);
+            entry.Initialize(album, this);
             _listEntries.Add(entry);
         }
         _printButton.interactable = true;
         _loadButton.interactable = false;
+    }
+
+    public void DeleteEntry(AlbumListEntry entry)
+    {
+        _listEntries.Remove(entry);
+        Destroy(entry.gameObject);
     }
 }
